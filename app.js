@@ -7,6 +7,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var OAuthStrategy = require('passport-oauth').OAuthStrategy;
 
 var app = express();
 
@@ -31,9 +32,15 @@ app.use(passport.session());
 
 // passport config
 var Account = require('./models/account');
+
+// local strategy
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+// canvas strategy
+// passport.use('canvas', new OAuthStrategy({
+// 	userAuthorizationURL: 'https://upenn.instructure.com/login/oauth2/auth',
+// }))
 
 // mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');

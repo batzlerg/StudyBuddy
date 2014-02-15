@@ -9,8 +9,8 @@
   </head>
   <body>
     <div class="container">
-      <h1>Register Page</h1>
-      <p class="lead">Say something worthwhile here.</p><br>
+      <h1>StudyBuddy</h1>
+      <p class="lead">Register Here</p><br>
       <form role="form" action="/register" method="post" style="max-width: 300px;">
         <div class="form-group">
           <input type="text" name="username" placeholder="Enter Username" class="form-control">
@@ -22,7 +22,7 @@
           <button type="button" class="btn btn-primary">Cancel</button></a>
       </form>
       <br />
-      <h4><%- error -%></h4>
+      <h4 style="color:red; font-weight:300;"><%- msg -%></h4>
     </div>
   </body>
 </html>
