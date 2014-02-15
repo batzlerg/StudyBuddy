@@ -10,11 +10,17 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
+// gzip
+app.use(express.compress());
+
+// EJS and templating
 app.set('view_engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('view options', {layout:false, root:__dirname + '/views/'});
-app.use(express.compress());
-app.use(express.static(__dirname + '/public'));
+
+// init passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // passport config
 var Account = require('./models/account');
@@ -22,15 +28,9 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-app.get('/hello', function(req, res){
-	var dataEJS = {};
-	dataEJS.page_title = 'My Beautiful Title';
-	dataEJS.page_body = 'My Beautiful Content';
-	res.render('layout.ejs', dataEJS);
-});
-app.get('/', function(req,res){
-	res.send('Default');
-});
+// hook router in
+require('./routes')(app);
 
+// magic
 app.listen(port);
 console.log("listening on port " + port)
