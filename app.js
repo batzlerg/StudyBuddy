@@ -5,6 +5,8 @@ var ejs = require('ejs');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -14,6 +16,11 @@ app.set('view options', {layout:false, root:__dirname + '/views/'});
 app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 app.get('/hello', function(req, res){
 	var dataEJS = {};

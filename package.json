@@ -8,5 +8,7 @@
 		"express" : "3.x",
 		"ejs": "*",
 		"mongodb" : "*",
-		"mongoose": "*"
+		"mongoose": "*",
+    "passport": "*"
 	}
+}
