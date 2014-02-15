@@ -1,0 +1,17 @@
+{
+  "name": "StudyBuddy",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "mongoose":"*",
+    "passport":"*",
+    "passport-local":"*",
+    "passport-local-mongoose":"*"
+  }
+}
