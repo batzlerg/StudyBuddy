@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.post('/register', function(req, res) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
-            return res.render('register.ejs', { account : account });
+            return res.render('register.ejs', { error: "That username already exists. Try again." });
         }
 
         passport.authenticate('local')(req, res, function () {
