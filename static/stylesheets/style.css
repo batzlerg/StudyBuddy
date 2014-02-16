@@ -1,12 +1,42 @@
-/* Space out content a bit */
+html {
+  overflow-y: hidden;
+}
+
 body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
+h1, h2, h3, h4, h5, p, a, a:hover{
+  color:#ffffff;
+}
+
+h5 {
+  margin-top:-5px;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+#creators {
+  margin-top:0;
+}
+
+.leftpic {
+  padding-left:50px;
+  padding-right:0;
+}
+
+.rightpic {
+  padding-left:0;
+  padding-right:50px;
+}
+
 .studybuddy {
   /*font-family:'Muli', sans-serif;*/
   letter-spacing: -2px;
+  margin-top: 10px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -50,8 +80,11 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 5px;
-  color: #777;
   border-top: 1px solid #e5e5e5;
+}
+
+.footer p {
+  color: #777;
 }
 
 /* Customize container */
@@ -112,6 +145,10 @@ body {
 form {
   margin: 0 auto;
   margin-bottom:10px;
+}
+
+form .btn {
+  margin-top:15px;
 }
 
 .msg {
