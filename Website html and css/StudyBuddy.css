@@ -1,0 +1,52 @@
+
+
+.Study h1 {
+	color: blue;
+    font-size: 48pt;
+    text-align: center;
+    font-family: "Steiner", Verdana, Tahoma;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+
+#StudyTop {
+    color: blue;
+    font-size: 40pt;
+    text-align: left;
+    font-family: "Steiner", Verdana, Tahoma;
+    border-radius: 3px 6px 9px 12px;
+}
+
+.Nervous {
+	float: left;
+    font-size: 32pt;
+    color: white; text-shadow: black -1px -1px 0px;
+}
+
+.Alone {
+	float: right;
+	color: white; text-shadow: black -1px -1px 0px;
+    font-size: 32pt;
+}
+
+
+#Connect
+{
+    color: white; text-shadow: black -1px -1px 0px;
+    font-size: 25pt;
+    text-align: center;
+}
+
+body
+{
+    background-image:url('green_cup.png');
+    background-repeat : repeat;
+
+} 
+
+<style type="text/css">
+@font-face {
+    font-family: "Steiner";
+    src: url(Steinerlight.ttf) format("truetype");
+}

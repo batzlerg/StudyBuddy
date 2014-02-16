@@ -1,0 +1,44 @@
+body {
+    font-size: 14px;
+    color: navy;
+}
+
+h1 {
+    color: #ffc;
+    background-color: #900;
+    font-size: 2em;
+    margin: 0;
+    margin-bottom: 7px;
+    padding: 4px;
+    font-style: italic;
+    text-align: center;
+    letter-spacing: 0.5em;
+    border-bottom-style: solid;
+    border-bottom-width: 0.5em;
+    border-bottom-color: #c00;
+}
+
+h1 {
+    background: #fc0;
+    padding: 20px;
+    border-radius: 3px 6px 9px 12px;
+    }
+
+h2 {
+    font-size: 1.5em;
+    background-color: #ccc;
+    margin: 20px;
+    padding: 40px;
+}
+
+h2 {
+    border-style: dashed;
+    border-width: 3px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-color: red;
+}
+
+h1 {
+    background: white url(http://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_2011_CC.jpg) no-repeat top;
+}
