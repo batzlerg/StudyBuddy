@@ -7,7 +7,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var OAuthStrategy = require('passport-oauth').OAuthStrategy;
+// var OAuthStrategy = require('passport-oauth').OAuthStrategy;
 
 var app = express();
 
@@ -20,7 +20,7 @@ app.set('view options', {layout:false, root:__dirname + '/views/'});
 app.use(express.compress());
 
 // express methods
-app.use(express.logger());
+// app.use(express.logger());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
