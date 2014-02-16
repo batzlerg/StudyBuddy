@@ -25,13 +25,15 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+app.use(express.static(__dirname + '/static'));
 
 // init passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 // passport config
-var Account = require('./models/account');
+var models = require('./models/account');
+var Account = models.Account;
 
 // local strategy
 passport.use(new LocalStrategy(Account.authenticate()));

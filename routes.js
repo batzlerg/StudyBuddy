@@ -1,5 +1,8 @@
 var passport = require('passport');
-var Account = require('./models/account');
+var models = require('./models/account');
+  var Account = models.Account;
+  var Course = models.Course;
+  var Group = models.Group;
 var loginControl = require('connect-ensure-login');
 
 module.exports = function (app) {
@@ -12,12 +15,11 @@ module.exports = function (app) {
   });
 
   app.get('/', function (req, res) {
-    console.log("Routing a request for: /");
-    res.render('index.ejs', { user : req.user });
+    res.render('index.ejs', { user : req.user, page_title: 'StudyBuddy: connect with your classmates'});
   });
 
   app.get('/register', function(req, res) {
-      res.render('register.ejs', { msg: ""});
+      res.render('register.ejs', { msg: "", page_title: 'Register for StudyBuddy'});
   });
 
   app.post('/register', function(req, res) {
@@ -37,13 +39,13 @@ module.exports = function (app) {
         // });
       })
     } else {
-      res.render('register.ejs', { msg: 'Valid Penn address required.'});
+      res.render('register.ejs', { msg: 'Valid Penn address required', page_title: 'StudyBuddy | Register' });
     }
   });
 
   app.get('/login', function(req, res) {
     console.log("Routing a request for: /login");
-    res.render('login.ejs', { user : req.user });
+    res.render('login.ejs', { user : req.user, msg: '', page_title: 'StudyBuddy | Login' });
   });
 
   app.post('/login', passport.authenticate('local', {

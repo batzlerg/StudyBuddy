@@ -4762,10 +4762,10 @@ a.list-group-item.active>.badge,.nav-pills>.active>a>.badge{
 	font-size:21px;
 	font-weight:200
 }
-
+/*
 .container .jumbotron{
 	border-radius:6px
-}
+}*/
 
 .jumbotron .container{
 	max-width:100%
