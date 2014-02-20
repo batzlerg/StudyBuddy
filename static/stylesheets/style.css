@@ -165,11 +165,21 @@ form .btn {
 }
 
 .msg {
-  color:#fff; 
+  color:#ffffff; 
   font-weight:300;
   font-style:italic;
   margin-top:20px;
   margin-bottom:-20px;
+}
+
+li.course {
+  list-style-type:none;
+  color:#ffffff;
+  font-size: 20px;
+}
+
+.jumbotron .leftalign {
+  text-align:left;
 }
 
 /* Supporting marketing content */

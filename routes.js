@@ -8,6 +8,7 @@ var models = require('./models/account');
   var Course = models.Course;
   var Group = models.Group;
 var loginControl = require('connect-ensure-login');
+var async = require('async');
 
 module.exports = function (app) {
 
@@ -19,26 +20,64 @@ module.exports = function (app) {
     if (req.user) {
       console.log("logged in!");
 
-      Account.findOne({ username: req.user.username }, function(err, docReturned) {
-        var user_course_ids = docReturned.courses;
-        console.log("USER COURSE IDS: " + user_course_ids);
-        var user_courses = new Array();
-        for (i=0; i<user_course_ids.length; i++) {
-          Course.findOne({ _id: user_course_ids[i] }, function(err, result) {
-            console.log("COURSE NAME LOOKUP: " + result);
-            user_courses[i] = result.subject + " " + result.number;
-            console.log("COURSE NAME: " + user_courses[i]);
+      var user_course_ids = new Array();
+      var user_courses = new Array();
+
+      var translateIdToCourseName = function (course_id, call) {
+        var objId = "ObjectId"
+        Course.findOne({ _id: course_id }, function (err, result) {
+          if (err) return "Error";
+          var courseName = result.subject + " " + result.number;
+          return call(null, courseName);
+        });
+      };
+
+      // Account.findOne({ username: req.user.username }, function(err, docReturned) {
+      //   var user_course_ids = docReturned.courses;
+      //   console.log("USER COURSE IDS: " + user_course_ids);
+      //   var user_courses = new Array();
+      //   for (i=0; i<user_course_ids.length; i++) {
+      //     Course.findOne({ _id: user_course_ids[i] }, function(err, result) {
+      //       console.log("COURSE NAME LOOKUP: " + result);
+      //       user_courses[i] = result.subject + " " + result.number;
+      //       console.log("COURSE NAME: " + user_courses[i]);
+      //     });
+      //     console.log("looped " + i + " times and added \"" + user_course_ids[i] + "\"");
+      //   }
+      //   setTimeout(function(){
+      //     res.render('index.ejs', { 
+      //     user : req.user, 
+      //     page_title: 'StudyBuddy: connect with your classmates',
+      //     user_courses: user_courses
+      //   })}, 20);
+      // });
+
+      async.series([
+        function (callback){
+          Account.findOne({username:req.user.username}, function (err, docReturned) {
+            if (err) return callback(err);
+            user_course_ids = docReturned.courses;
+            console.log("USER_COURSE_IDS: " + user_course_ids);
+            callback();
           });
-          console.log("looped " + i + " times and added \"" + user_course_ids[i] + "\"");
+        },
+        function (callback) {
+          async.map(user_course_ids, translateIdToCourseName, function (err, results) {
+            if (err) return callback(err);
+            user_courses = results;
+            console.log("USER_COURSES: " + user_courses);
+            callback();
+          });
+        }],
+        function (err) {
+          if (err) return next(err);
+            res.render('index.ejs', { 
+              user : req.user, 
+              page_title: 'StudyBuddy: connect with your classmates',
+              user_courses: user_courses
+            });
         }
-        setTimeout(function(){
-          res.render('index.ejs', { 
-          user : req.user, 
-          page_title: 'StudyBuddy: connect with your classmates',
-          user_courses: user_courses
-        })}, 20);
-      });
-        
+      );
     }  
 
     else {

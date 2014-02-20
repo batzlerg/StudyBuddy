@@ -3,14 +3,16 @@
     <div class="jumbotron">
       <h2>Welcome back, user.</h2>
       <br />
-      <% if (user_courses.length > 0) { %>
-      <p><%- user_courses.length %></p>
-        <ul>
-          <% for(i=0; i<user_courses.length; i++) { %>
-            <li><%- user_courses[i] %></li>
-          <% } %>
-        </ul>
-      <% } %>
+      <div class="leftalign">
+        <% if (user_courses.length > 0) { %>
+        <p>You are enrolled in <%- user_courses.length %> courses:</p>
+          <ul>
+            <% for(i=0; i<user_courses.length; i++) { %>
+              <li class="course"><%- user_courses[i] %></li>
+            <% } %>
+          </ul>
+        <% } %>
+      </div>
       <form role="form" action="/addcourse" method="post" style="max-width: 300px;">
         <div class="form-group courseinfo">
           <input type="text" name="subject" placeholder="@@@@" class="form-control">
