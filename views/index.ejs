@@ -8,7 +8,7 @@
         <p>You are enrolled in <%- user_courses.length %> courses:</p>
           <ul>
             <% for(i=0; i<user_courses.length; i++) { %>
-              <li class="course"><%- user_courses[i] %></li>
+              <li class="course"><a href="#">[x]</a> <%- user_courses[i] %></li>
             <% } %>
           </ul>
         <% } %>
